@@ -1,0 +1,30 @@
+seed: 42
+device: auto
+dataset:
+  name: MNIST
+  data_dir: data/MNIST-Original
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      std:
+      - 0.5
+model:
+  name: PlainNN
+  module: src.models
+  file: mlp
+  args:
+    hidden_dim1: 1024
+    hidden_dim2: 512
+optimizer:
+  name: SGD
+  args:
+    lr: 0.0005
+training:
+  batch_size: 120
+  num_epochs: 50
+  checkpoint_dir: ./checkpoints/mnist_original_mlp_slow
+  save_every: 50

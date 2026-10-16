@@ -1,0 +1,43 @@
+seed: 42
+device: auto
+dataset:
+  name: CIFAR10
+  data_dir: data/CIFAR10
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      - 0.5
+      - 0.5
+      std:
+      - 0.5
+      - 0.5
+      - 0.5
+model:
+  name: ViT
+  module: src.models
+  file: transformer
+  args:
+    img_size: 32
+    patch_size: 8
+    in_channels: 3
+    num_classes: 10
+    embed_dim: 192
+    depth: 6
+    num_heads: 6
+    dropout: 0.1
+optimizer:
+  name: SGD
+  args:
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+scheduler: null
+training:
+  batch_size: 128
+  num_epochs: 40
+  checkpoint_dir: ./checkpoints/cifar10_vit
+  save_every: 100

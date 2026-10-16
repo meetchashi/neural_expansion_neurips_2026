@@ -1,0 +1,37 @@
+seed: 42
+device: auto
+dataset:
+  name: MNIST
+  data_dir: data/MNIST-Original
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      std:
+      - 0.5
+model:
+  name: ViT
+  module: src.models
+  file: transformer
+  args:
+    img_size: 28
+    patch_size: 7
+    in_channels: 1
+    num_classes: 10
+    embed_dim: 64
+    depth: 4
+    num_heads: 4
+    dropout: 0.1
+optimizer:
+  name: SGD
+  args:
+    lr: 0.01
+scheduler: null
+training:
+  batch_size: 128
+  num_epochs: 15
+  checkpoint_dir: ./checkpoints/mnist_original_vit
+  save_every: 50

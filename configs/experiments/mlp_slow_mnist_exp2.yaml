@@ -1,0 +1,54 @@
+experiment_name: mlp_mnist_slow_train_gi_analysis
+description: Analysis of GI relationships with singular vectors for MLP on MNIST
+output_dir: experiments/results/mlp_mnist_slow_train_gi_analysis
+model:
+  architecture: mlp
+  config_path: configs/training/mnist_mlp_slow.yaml
+dataset:
+  name: mnist
+  data_dir: data/MNIST-Original
+  classes:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+samples:
+  k_correct: 5
+  k_incorrect: 5
+  dataset_split: train
+checkpoints:
+  strategy: linear
+  base_dir: ~/Desktop/Research/My Projects/neural_expansion/checkpoints/mnist_original_mlp_slow
+  start_checkpoint: model_epoch0_batch0.pth
+  end_checkpoint: epoch15_batch399.pth
+  num_checkpoints: 15
+  custom_checkpoints: []
+  patterns: []
+gi_analysis:
+  max_alpha: 3.0
+  step_size: 0.01
+  batch_size: 100
+  num_rsvs: 784
+  device: cuda
+  rsv_scale: 56.0
+  rsv_batch_size: 50
+  analysis_output_dir: ~/Desktop/Research/My Projects/neural_expansion/experiments/results/results_mlp_mlp_mnist_slow_train_gi_analysis_all_class_epoch0_15_ckpts_15
+  analyze_checkpoints:
+  - model_epoch0_batch0
+  - model_epoch49_batch399
+  analyze_gi_vs_rsv: true
+  analyze_gi_vs_singular_values: true
+  analyze_gi_growth: false
+visualization:
+  plot_individual_samples: true
+  plot_class_averages: true
+  plot_architecture_comparisons: false
+  save_formats:
+  - png
+  - pdf

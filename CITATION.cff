@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: Please cite the Neural Expansion paper.
+title: 'Neural Expansion: A Unified Mechanism for How Deep Neural Networks Generalize'
+type: software
+authors: &id001
+- family-names: Islam
+  given-names: Chashi Mahiul
+- family-names: Chacko
+  given-names: Samuel Jacob
+- family-names: Nishino
+  given-names: Mao
+- family-names: Zhang
+  given-names: Canlin
+- family-names: Liu
+  given-names: Xiuwen
+version: 0.1.0
+preferred-citation:
+  type: conference-paper
+  title: 'Neural Expansion: A Unified Mechanism for How Deep Neural Networks Generalize'
+  authors: *id001
+  year: 2026
+  collection-title: Advances in Neural Information Processing Systems

@@ -1,0 +1,36 @@
+seed: 42
+device: auto
+dataset:
+  name: CIFAR10
+  data_dir: data/CIFAR10
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      - 0.5
+      - 0.5
+      std:
+      - 0.5
+      - 0.5
+      - 0.5
+model:
+  name: PlainNN
+  module: src.models
+  file: mlp
+  args:
+    input_dim: 3072
+    hidden_dim1: 2048
+    hidden_dim2: 1024
+    output_dim: 10
+optimizer:
+  name: SGD
+  args:
+    lr: 0.001
+training:
+  batch_size: 120
+  num_epochs: 50
+  checkpoint_dir: ./checkpoints/cifar10_mlp
+  save_every: 200

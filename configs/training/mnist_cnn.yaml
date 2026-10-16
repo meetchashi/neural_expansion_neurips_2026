@@ -1,0 +1,35 @@
+seed: 42
+device: auto
+dataset:
+  name: MNIST
+  data_dir: data/MNIST-Original
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      std:
+      - 0.5
+model:
+  name: CNN
+  module: src.models
+  file: cnn
+  args:
+    num_classes: 10
+    input_channels: 1
+    hidden_channels1: 32
+    hidden_channels2: 64
+    input_height: 28
+    input_width: 28
+optimizer:
+  name: SGD
+  args:
+    lr: 0.001
+scheduler: null
+training:
+  batch_size: 128
+  num_epochs: 30
+  checkpoint_dir: ./checkpoints/mnist_original_cnn
+  save_every: 100

@@ -1,0 +1,33 @@
+dataset:
+  data_dir: data/MNIST-Original
+  name: MNIST
+  num_classes: 10
+  transform:
+    normalize:
+      mean:
+      - 0.5
+      std:
+      - 0.5
+    to_tensor: true
+  val_split: 0.2
+  variant: random10
+  variant_seed: 42
+device: auto
+model:
+  args:
+    hidden_dim1: 1024
+    hidden_dim2: 512
+    output_dim: 10
+  file: mlp
+  module: src.models
+  name: PlainNN
+optimizer:
+  args:
+    lr: 0.001
+  name: SGD
+seed: 42
+training:
+  batch_size: 120
+  checkpoint_dir: checkpoints/mnist_random10_mlp
+  num_epochs: 50
+  save_every: 200

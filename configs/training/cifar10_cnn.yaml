@@ -1,0 +1,41 @@
+seed: 42
+device: auto
+dataset:
+  name: CIFAR10
+  data_dir: data/CIFAR10
+  val_split: 0.2
+  num_classes: 10
+  transform:
+    to_tensor: true
+    normalize:
+      mean:
+      - 0.5
+      - 0.5
+      - 0.5
+      std:
+      - 0.5
+      - 0.5
+      - 0.5
+model:
+  name: CNN
+  module: src.models
+  file: cnn
+  args:
+    num_classes: 10
+    input_channels: 3
+    hidden_channels1: 64
+    hidden_channels2: 128
+    input_height: 32
+    input_width: 32
+optimizer:
+  name: SGD
+  args:
+    lr: 0.01
+    momentum: 0.9
+    weight_decay: 0.0001
+scheduler: null
+training:
+  batch_size: 128
+  num_epochs: 30
+  checkpoint_dir: ./checkpoints/cifar10_cnn
+  save_every: 100

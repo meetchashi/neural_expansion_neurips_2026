@@ -1,0 +1,61 @@
+experiment_name: vit_cifar10_gi_analysis
+description: Analysis of GI relationships with singular vectors for VIT on CIFAR10
+output_dir: experiments/results/vit_cifar10_train_gi_analysis_all_class_epoch0_10_ckpts_10
+model:
+  architecture: vit
+  config_path: configs/training/cifar10_vit.yaml
+dataset:
+  name: cifar10
+  data_dir: data/CIFAR10
+  classes:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+samples:
+  k_correct: 5
+  k_incorrect: 5
+  dataset_split: train
+checkpoints:
+  strategy: linear
+  base_dir: checkpoints/cifar10_vit
+  start_checkpoint: model_epoch0_batch0.pth
+  end_checkpoint: model_epoch10_batch312.pth
+  num_checkpoints: 10
+  custom_checkpoints: []
+  patterns: []
+linear_approximation:
+  threshold: 0.95
+  max_alpha: 111.0
+  batch_size: 4000
+  tolerance: 0.01
+  max_iterations: 20
+  verbose: false
+gi_analysis:
+  max_alpha: 3.0
+  step_size: 0.01
+  batch_size: 100
+  num_rsvs: 784
+  device: cuda
+  rsv_scale: 111.0
+  rsv_batch_size: 6000
+  analysis_output_dir: experiments/results/results_vit_cifar10_train_gi_analysis_all_class_epoch0_10_ckpts_10
+  analyze_checkpoints:
+  - model_epoch0_batch0
+  - model_epoch10_batch312
+  analyze_gi_vs_rsv: true
+  analyze_gi_vs_singular_values: true
+  analyze_gi_growth: false
+visualization:
+  plot_individual_samples: true
+  plot_class_averages: true
+  plot_architecture_comparisons: false
+  save_formats:
+  - png
+  - pdf
